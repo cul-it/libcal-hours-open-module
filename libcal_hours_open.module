@@ -5,43 +5,6 @@
  */
 
 /**
- * Implements hook_menu().
- */
-function libcal_hours_open_menu() {
-  $items = array();
-
-  $items['admin/config/content/libcal_hours_open'] = array(
-    'title' => 'LibCal Hours Open',
-    'description' => 'Configuration for LibCal Hours Open module',
-    'page callback' => 'libcal_hours_open_form',
-    'page arguments' => array('libcal_hours_open_form'),
-    'access arguments' => array('access administration pages'),
-    'type' => MENU_NORMAL_ITEM,
-  );
-
-  return $items;
-}
-
-/**
- * Page callback: LibCal Currently Open field
- *
- * @see libcal_hours_open_menu()
- */
-function libcal_hours_open_form($form, &$form_state) {
-  $form['currently_open_field'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Machine name of the Currently Open field'),
-    '#default_value' => variable_get('libcal_hours_open_currently_field', 'field_dh_currently_open'),
-    '#size' => 20,
-    '#maxlength' => 30,
-    '#description' => t('The name of the field that the LibCal feed xpath /libcal/locations/location/times/currently_open maps to. Should contain "true" or "false".'),
-    '#required' => TRUE,
-  );
-
-  return system_settings_form($form);
-}
-
-/**
  * [computed_field_field_dh_class_compute description]
  * @param  [type] &$entity_field [description]
  * @param  [type] $entity_type   [description]
