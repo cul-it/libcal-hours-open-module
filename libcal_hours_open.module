@@ -21,4 +21,10 @@ function computed_field_field_dh_class_compute(&$entity_field, $entity_type, $en
   $class = $test[0]['value'] ? 'label-success' : 'label-danger';
   $entity_field[0]['value'] = "$class";
 
+  // display settings in log file
+  $is_open = $test[0]['value'] ? 'Open' : 'Closed';
+  $location = $entity->title;
+  watchdog('libcal_hours_open', 'LibCal shows @open for @loc (field @fld) ', array('@fld' => $field, '@open' => $is_open, '@loc' => $location), WATCHDOG_NOTICE);
+}
+
 }
