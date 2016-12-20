@@ -27,4 +27,15 @@ function computed_field_field_dh_class_compute(&$entity_field, $entity_type, $en
   watchdog('libcal_hours_open', 'LibCal shows @open for @loc (field @fld) ', array('@fld' => $field, '@open' => $is_open, '@loc' => $location), WATCHDOG_NOTICE);
 }
 
+/**
+ * display code for computed field
+ * @param  [type] $field             [description]
+ * @param  [type] $entity_field_item [description]
+ * @param  [type] $entity_lang       [description]
+ * @param  [type] $langcode          [description]
+ * @param  [type] $entity            [description]
+ * @return [type]                    [description]
+ */
+function computed_field_field_dh_class_display($field, $entity_field_item, $entity_lang, $langcode, $entity) {
+  return $entity_field_item['value'];
 }
