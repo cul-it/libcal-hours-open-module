@@ -1,0 +1,1 @@
+# libcal-hours-open-module
