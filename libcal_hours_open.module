@@ -16,5 +16,9 @@
  * @return [type]                [description]
  */
 function computed_field_field_dh_class_compute(&$entity_field, $entity_type, $entity, $field, $instance, $langcode, $items) {
+  $field = variable_get('libcal_hours_open_currently_field', 'field_dh_currently_open');
+  $test = field_get_items($entity_type, $entity, $field);
+  $class = $test[0]['value'] ? 'label-success' : 'label-danger';
+  $entity_field[0]['value'] = "$class";
 
 }
