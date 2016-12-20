@@ -1,0 +1,6 @@
+name = LibCal Hours Open
+description = Computed field to show "Open" or "Closed"
+core = 7.x
+package = Fields
+dependencies[] = computed_field
+configure = admin/config/content/libcal-hours-open
