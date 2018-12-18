@@ -25,6 +25,7 @@ function computed_field_field_dh_class_compute(&$entity_field, $entity_type, $en
   $is_open = $test[0]['value'] ? 'Open' : 'Closed';
   $location = $entity->title;
   watchdog('libcal_hours_open', 'LibCal shows @open for @loc (field @fld) ', array('@fld' => $field, '@open' => $is_open, '@loc' => $location), WATCHDOG_NOTICE);
+    // the last value of libcal_hours_open_currently_field is stored in the second slot of
 }
 
 /**
