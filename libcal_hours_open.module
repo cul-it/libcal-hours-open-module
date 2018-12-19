@@ -16,18 +16,16 @@
  * @return [type]                [description]
  */
 function computed_field_field_dh_class_compute(&$entity_field, $entity_type, $entity, $field, $instance, $langcode, $items) {
-  $field = variable_get('libcal_hours_open_currently_field', 'field_dh_currently_open');
-  $test = field_get_items($entity_type, $entity, $field);
+  $test_field = variable_get('libcal_hours_open_currently_field', 'field_dh_currently_open');
+  $test = field_get_items($entity_type, $entity, $test_field);
+  $old_class = field_get_items($entity_type, $entity, 'field_dh_class');
   $class = $test[0]['value'] ? 'label-success' : 'label-danger';
   $entity_field[0]['value'] = "$class";
-
-  if ($test[0]['value'] != $entity_field[1]['value']) {
-    // the last value of libcal_hours_open_currently_field is stored in the second slot of
-    // dh_class_compute so we can only show the log message when it changes
-    $entity_field[1]['value'] = $test[0]['value'];
+  
+  if ($old_class && $old_class[0]['value'] != $class) {
     $is_open = $test[0]['value'] ? 'Open' : 'Closed';
     $location = $entity->title;
-    watchdog('libcal_hours_open', 'LibCal shows @open for @loc (field @fld) ', array('@fld' => $field, '@open' => $is_open, '@loc' => $location), WATCHDOG_NOTICE);
+    watchdog('libcal_hours_open', 'LibCal shows @open for @loc (field @fld) ', array('@fld' => $test_field, '@open' => $is_open, '@loc' => $location), WATCHDOG_NOTICE);
   }
 }
 
